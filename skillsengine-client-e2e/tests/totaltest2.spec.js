@@ -1,0 +1,34 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('http://143.110.186.35:4000/login');
+  await page.getByText('Login here').click();
+  await page.getByPlaceholder('Email').click();
+  await page.getByPlaceholder('Email').fill('poonam.shinde@algorisys.com');
+  await page.getByPlaceholder('Password').click();
+  await page.getByPlaceholder('Password').fill('12345678');
+  await page.getByRole('button', { name: 'Login' }).click();
+  await page.getByRole('heading', { name: 'Logged in :' }).click();
+  await page.getByText('Thu Aug 01').click();
+  await page.getByText('Total test 3 View').click();
+  await page.getByText('3').click();
+  await page.locator('li').filter({ hasText: 'Total test 3 View' }).getByRole('link').click();
+  await page.getByRole('cell', { name: '1' }).click();
+  await page.getByRole('row', { name: 'GK Test View result' }).getByRole('rowheader').click();
+  await page.getByText('View result').click();
+  await page.getByText('Test result').click();
+  await page.getByRole('rowheader', { name: 'Test name :' }).click();
+  await page.getByRole('cell', { name: 'GK Test' }).click();
+  await page.getByRole('rowheader', { name: 'Test date :' }).click();
+  await page.getByRole('cell', { name: 'Wed Jul 31' }).click();
+  await page.getByRole('rowheader', { name: 'Marks :' }).click();
+  await page.getByRole('cell', { name: '%' }).click();
+  await page.getByText('Back to page').click();
+  await page.getByRole('cell', { name: '2' }).click();
+  await page.getByRole('row', { name: 'GK Test Due date passed' }).getByRole('rowheader').click();
+  await page.getByRole('row', { name: 'GK Test Due date passed' }).locator('a').click();
+  await page.getByRole('cell', { name: '3' }).click();
+  await page.getByRole('rowheader', { name: 'Aptitude Test' }).click();
+  await page.getByRole('row', { name: 'Aptitude Test Due date passed' }).locator('a').click();
+  await page.goto('http://143.110.186.35:4000/dashboard');
+});
