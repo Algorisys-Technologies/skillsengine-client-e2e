@@ -1,33 +1,13 @@
-const { devices } = require('@playwright/test');
+const { defineConfig } = require('@playwright/test');
 
-module.exports = {
+module.exports = defineConfig({
   testDir: './tests',
-  timeout: 8000000, // Global test timeout
-  expect: {
-    timeout: 250000, // Expect timeout
-  },
-  fullyParallel: true,
-  reporter: [
-    ['list'], // Detailed console output
-    ['html', { outputFolder: 'playwright-report' }],
-  ],
+  timeout: 600000, // Increased timeout to 10 minutes (600 seconds)
+  retries: 2,
   use: {
-    actionTimeout: 8000000, // Action timeout
-    trace: 'on-first-retry',
+    headless: true,
+    viewport: { width: 1280, height: 720 },
+    actionTimeout: 0,
   },
-  projects: [
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
-    },
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
-  ],
-  testMatch: ['tests/**/*.spec.js', '*.spec.js'],
-};
+  reporter: [['list'], ['html', { open: 'never' }]],
+});

@@ -9,10 +9,10 @@ test('test', async ({ page }) => {
   await page.getByPlaceholder('Password').fill('12345678');
   await page.getByRole('button', { name: 'Login' }).click();
   await page.getByRole('heading', { name: 'Logged in :' }).click();
-  await page.getByText('Wed Jul 31').click();
-  await page.getByText('Total test 2 View').click();
-  await page.locator('li').filter({ hasText: 'Total test 2 View' }).getByRole('link').click();
-  await page.getByRole('heading', { name: 'Total test: 2 ' }).click();
+  await page.getByText('Thu Aug 01').click();
+  await page.getByText('Total test 3 View').click();
+  await page.getByText('3').click();
+  await page.locator('li').filter({ hasText: 'Total test 3 View' }).getByRole('link').click();
   await page.getByRole('cell', { name: '1' }).click();
   await page.getByRole('row', { name: 'GK Test View result' }).getByRole('rowheader').click();
   await page.getByText('View result').click();
@@ -25,7 +25,10 @@ test('test', async ({ page }) => {
   await page.getByRole('cell', { name: '%' }).click();
   await page.getByText('Back to page').click();
   await page.getByRole('cell', { name: '2' }).click();
-  await page.getByRole('row', { name: 'GK Test Pending test' }).getByRole('rowheader').click();
-  await page.getByText('Pending test').click();
+  await page.getByRole('row', { name: 'GK Test Due date passed' }).getByRole('rowheader').click();
+  await page.getByRole('row', { name: 'GK Test Due date passed' }).locator('a').click();
+  await page.getByRole('cell', { name: '3' }).click();
+  await page.getByRole('rowheader', { name: 'Aptitude Test' }).click();
+  await page.getByRole('row', { name: 'Aptitude Test Due date passed' }).locator('a').click();
   await page.goto('http://143.110.186.35:4000/dashboard');
 });
