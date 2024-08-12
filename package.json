@@ -1,5 +1,5 @@
 {
-  "name": "skillsengine-client-e2e",
+  "name": "skillzengine-tests",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,8 @@
   "author": "",
   "license": "ISC",
   "description": "",
-  "devDependencies": {
-    "@playwright/test": "^1.45.3"
+  "dependencies": {
+    "@playwright/test": "^1.46.0",
+    "playwright": "^1.46.0"
   }
 }

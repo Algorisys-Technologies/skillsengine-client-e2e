@@ -1,13 +1,12 @@
-const { defineConfig } = require('@playwright/test');
+import { defineConfig } from '@playwright/test';
 
-module.exports = defineConfig({
-  testDir: './tests',
-  timeout: 600000, // Increased timeout to 10 minutes (600 seconds)
-  retries: 2,
+export default defineConfig({
+  timeout: 120000, // Global timeout of 2 minutes for all tests
   use: {
-    headless: true,
+    baseURL: 'https://skillzengine.algorisys.com/client/',
+    headless: false, // Set to true if you want to run the tests without a browser UI
     viewport: { width: 1280, height: 720 },
-    actionTimeout: 0,
+    ignoreHTTPSErrors: true,
+    video: 'on-first-retry', // Records video only if the test fails the first time
   },
-  reporter: [['list'], ['html', { open: 'never' }]],
 });
