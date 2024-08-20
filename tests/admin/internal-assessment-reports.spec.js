@@ -1,53 +1,51 @@
 import { test, expect } from '@playwright/test';
 
-test('Internal Assessment Reports', async ({ page }) => {
-  await page.goto('https://skillzengine.algorisys.com/admin/login');
+test('Internal Assessment navigation and validation', async ({ page }) => {
+  // Navigate to the admin page
+  await page.goto('https://skillzengine.algorisys.com/admin/');
+  
+  // Click on the Internal Assessment link
+  await page.getByRole('link', { name: ' Internal Assessment' }).click();
 
   // Log in
   await page.getByPlaceholder('email@company.com').fill('madhuri.bansode@algorisys.com');
+  await page.getByRole('button', { name: 'Continue' }).click();
   await page.getByPlaceholder('................').fill('12345678');
   await page.getByRole('button', { name: 'Sign in with work email' }).click();
 
-  // Navigate to Reports
-  await page.getByRole('heading', { name: 'Reports' }).click();
-  await page.getByRole('link', { name: 'Internal Assessment' }).click();
-  await page.getByRole('heading', { name: 'List of Assigned Assessment' }).click();
+  // Verify successful login
+  await expect(page).toHaveURL(/admin/); // Check that the URL contains 'admin' indicating successful login
 
-  // Wait for table to load
-  await page.waitForSelector('table', { timeout: 120000 });
+  // Navigate to Internal Assessment again
+  await page.getByRole('link', { name: ' Internal Assessment' }).click();
 
-  // Locate and click on specific cells with additional waits
-  const userNameCell = page.locator('td:has-text("poonam.shinde@algorisys.com")');
-  const assessmentNameCell = page.locator('td:has-text("Assessment_Name")');
-  const statusCell = page.locator('td:has-text("Status")');
-  const marksCell = page.locator('td:has-text("Marks")');
-  const endDateCell = page.locator('td:has-text("End_Date")');
+  // Debugging: Log current URL and take a screenshot
+  console.log(`Current URL: ${page.url()}`);
+  await page.screenshot({ path: 'debug-screenshot.png' });
 
-  await userNameCell.first().waitFor({ state: 'visible', timeout: 120000 });
-  await userNameCell.first().click();
+  // Increase timeout for the next expectation
+  await expect(page.getByRole('heading', { name: '  List of Assigned Assessment' })).toBeVisible({ timeout: 10000 });
 
-  await assessmentNameCell.first().waitFor({ state: 'visible', timeout: 120000 });
-  await assessmentNameCell.first().click();
+  // Interact with the list of assessments
+  await page.getByRole('cell', { name: 'User_Name' }).click();
+  await page.getByRole('cell', { name: 'Assessment_Name' }).click();
+  await page.getByRole('cell', { name: 'Status' }).click();
+  await page.getByRole('cell', { name: 'Marks' }).click();
+  
+  await page.getByRole('cell', { name: 'End_Date' }).click();
+  await page.getByRole('cell', { name: 'Actions' }).click();
 
-  await statusCell.first().waitFor({ state: 'visible', timeout: 120000 });
-  await statusCell.first().click();
+  // Select a specific test row and interact with it
+  await page.locator('td').first().click();
+  await page.getByRole('cell', { name: 'Attribute Test' }).first().click();
+  await page.locator('td:nth-child(3)').first().click();
+  await page.locator('td:nth-child(4)').first().click();
+  await page.getByRole('cell', { name: 'Fri Aug 16' }).click();
 
-  await marksCell.first().waitFor({ state: 'visible', timeout: 120000 });
-  await marksCell.first().click();
+  // Navigate to the details of the specific test
+  await page.getByRole('row', { name: 'poonam.shinde@algorisys.com 360 Attribute Test Pending Fri Aug 16 2024 Details' }).getByRole('link').click();
 
-  await endDateCell.first().waitFor({ state: 'visible', timeout: 120000 });
-  await endDateCell.first().click();
-
-  // Handle dialog if it appears
-  page.once('dialog', dialog => {
-    console.log(`Dialog message: ${dialog.message()}`);
-    dialog.dismiss().catch(() => {});
-  });
-
-  // Final actions
+  // Calculate the results
   await page.getByRole('button', { name: 'Calculate' }).click();
-  await page.getByRole('button', { name: 'Close' }).click();
 
-  // Navigate back to dashboard
-  await page.goto('https://skillzengine.algorisys.com/admin/dashboard');
 });

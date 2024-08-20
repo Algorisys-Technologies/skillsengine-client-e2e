@@ -1,39 +1,36 @@
 import { test, expect } from '@playwright/test';
 
-test('Create a single user', async ({ page }) => {
-  // Navigate to the login page
-  await page.goto('https://skillzengine.algorisys.com/admin/login');
+test('create single user', async ({ page }) => {
+  // Navigate to the SkillzEngine admin page
+  await page.goto('https://skillzengine.algorisys.com/admin/');
 
-  // Login
-  await page.fill('[placeholder="email@company.com"]', 'madhuri.bansode@algorisys.com');
-  await page.fill('[placeholder="................"]', '12345678');
-  await page.click('button:has-text("Sign in with work email")');
+  // Log in
+  await page.getByPlaceholder('email@company.com').fill('madhuri.bansode@algorisys.com');
+  await page.getByPlaceholder('................').fill('12345678');
+  await page.getByRole('button', { name: 'Sign in with work email' }).click();
 
-  // Wait for the dashboard to load
-  await expect(page).toHaveURL('https://skillzengine.algorisys.com/admin/dashboard');
-  await expect(page.locator('h1').withText('Dashboard')).toBeVisible();
+  // Navigate to Users section
+  await page.getByRole('link', { name: ' Users' }).click();
 
-  // Navigate to Users
-  await page.click('a:has-text("Users")');
+  // Click on 'Create User' button
+  await page.getByRole('button', { name: '   Create User' }).click();
 
-  // Wait for the Users page to load
-  await expect(page).toHaveURL('https://skillzengine.algorisys.com/admin/users');
-  await expect(page.locator('h1').withText('Users')).toBeVisible();
+  // Fill in user details
+  await page.getByPlaceholder('Please enter a valid email').fill('bhakti.sutar@algorisys.com');
+  await page.getByPlaceholder('Password').fill('12345678');
 
-  // Click Create User button
-  await page.click('button:has-text("Create User")');
+  // Set user role and status
+  await page.locator('label').filter({ hasText: 'Organization' }).click();
+  await page.getByText('Status').click();
+  await page.getByLabel('Status').check(); // Assuming 'Status' is a checkbox
 
-  // Fill out the user form
-  await page.fill('[placeholder="Please enter a valid email"]', 'bhakti.sutar@algorisys.com');
-  await page.fill('[placeholder="Password"]', '12345678');
-  await page.click('text=User Role');
-  await page.selectOption('select[name="organization"]', 'Your Organization ID'); // Update with the correct value
-  await page.check('input[name="status"]'); // Ensure this checkbox is selected if needed
+  // Click on 'Create User' button
+  await page.getByRole('button', { name: 'Create User', exact: true }).click();
 
-  // Click Create User button
-  await page.click('button:has-text("Create User")');
+  // Optional: Validate user creation
+  // Wait and verify user presence in the user list
+  await page.waitForTimeout(5000); // Adjust if necessary to wait for user list to update
+  const newUser = await page.getByText('bhakti.sutar@algorisys.com');
+  await expect(newUser).toBeVisible(); // Ensure the newly created user appears in the list
 
-  // Verify successful user creation
-  await expect(page.locator('h1').withText('User List')).toBeVisible();
-  await expect(page.locator('text=bhakti.sutar@algorisys.com')).toBeVisible(); // Adjust based on what you expect to see
 });

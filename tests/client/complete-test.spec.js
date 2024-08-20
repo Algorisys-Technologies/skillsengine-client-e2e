@@ -6,7 +6,7 @@ test('test', async ({ page }) => {
 
   // Log in
   await page.locator('html').click();
-  await page.getByRole('button', { name: 'Logout   ' }).click();
+  await page.getByRole('button', { name: 'Logout' }).click();
   await page.getByText('Log in by entering your email').click();
   await page.getByText('Email address', { exact: true }).click();
   await page.getByPlaceholder('email@company.com').click();

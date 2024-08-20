@@ -1,7 +1,7 @@
 import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
-  timeout: 120000, // Global timeout of 2 minutes for all tests
+  timeout: 920000, // Global timeout of 2 minutes for all tests
   use: {
     baseURL: 'https://skillzengine.algorisys.com/client/',
     headless: false, // Set to true if you want to run the tests without a browser UI

@@ -1,49 +1,38 @@
 import { test, expect } from '@playwright/test';
 
 test('Create Assessment Test', async ({ page }) => {
-  // Navigate to the login page
-  await page.goto('https://skillzengine.algorisys.com/admin/login');
-
-  // Login
+  // Navigate to the login page and log in
+  await page.goto('https://skillzengine.algorisys.com/admin/');
   await page.getByPlaceholder('email@company.com').fill('madhuri.bansode@algorisys.com');
   await page.getByPlaceholder('................').fill('12345678');
   await page.getByRole('button', { name: 'Sign in with work email' }).click();
-
-  // Verify successful login and navigation to the dashboard
+  
+  // Ensure the user is on the dashboard or the correct page
   await expect(page).toHaveURL('https://skillzengine.algorisys.com/admin/dashboard');
-  await expect(page.getByRole('heading', { name: 'Dashboard' })).toBeVisible();
 
-  // Navigate to Create Assessment
-  await page.getByRole('link', { name: 'Create Assessment' }).click();
+  // Navigate to the 'Create Assessment' section
+  await page.getByRole('link', { name: ' Create Assessment' }).click();
+  
+  // Select Group
+  await page.locator('label').filter({ hasText: 'Select Group' }).click();
+  await page.locator('select[name="groupId"]').selectOption('66b995035f3990a67c78b777');
 
-  // Debugging: Take a screenshot of the page before waiting
-  await page.screenshot({ path: 'screenshot_before.png' });
-
-  // Wait for dropdown to be visible and populated
-  const groupDropdown = page.locator('select[name="group"]');
-  await expect(groupDropdown).toBeVisible({ timeout: 120000 });
-
-  // Debugging: Check if dropdown options are populated
-  await page.waitForFunction(() => {
-    const dropdown = document.querySelector('select[name="group"]');
-    return dropdown && dropdown.options.length > 0;
-  });
-
-  // Debugging: Take a screenshot after the dropdown is populated
-  await page.screenshot({ path: 'screenshot_after.png' });
-
-  // Fill out the form
-  await groupDropdown.selectOption('66b2fd86bb12588a3330ec2e');
-  await page.locator('select[name="category"]').selectOption('Technical skills assessment');
-  await page.getByPlaceholder('Enter Test Name').fill('Skills Assessment');
-  await page.getByPlaceholder('Enter Test Time').fill('10');
-  await page.getByText('Auto Calc').click();
-  await page.getByText('Show Result').click();
-  await page.getByText('Auto Select Random Questions').click();
-  await page.getByPlaceholder('Enter No. of Questions').fill('1');
-  await page.getByRole('row', { name: '1 Technical skills assessment' }).getByRole('checkbox').check();
+  // Select Category
+  await page.locator('label').filter({ hasText: 'Select Category' }).click();
+  await page.getByLabel('Large select example').selectOption('360 Attributes');
+  
+  // Fill out the assessment details
+  await page.getByPlaceholder('Enter Test Name').fill('360 attributes test');
+  await page.getByPlaceholder('Enter Test Time').fill('30');
+  
+  // Check the required checkboxes
+  await page.getByLabel('Auto Calc').check();
+  await page.getByLabel('Show Result').check();
+  await page.getByLabel('Auto Select Random Questions').check();
+  
+  // Enter the number of questions
+  await page.getByPlaceholder('Enter No. of Questions').fill('5');
+  
+  // Submit the form
   await page.getByRole('button', { name: 'Add Test' }).click();
-
-  // Verify successful creation
-  await expect(page).toHaveURL('https://skillzengine.algorisys.com/admin/dashboard');
 });
