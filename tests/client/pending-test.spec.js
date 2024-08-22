@@ -36,20 +36,20 @@ test('test', async ({ page }) => {
 
   // Answer the first question
   await page.getByText('1', { exact: true }).click({ timeout: 10000 });
-  await page.getByText('1Is python compiled language?').click({ timeout: 10000 });
+  await page.getByText('Is python compiled language?').click({ timeout: 10000 });
   await page.getByLabel('False').check({ timeout: 10000 });
   await page.getByRole('button', { name: 'Next' }).click({ timeout: 10000 });
 
   // Answer the second question
   await page.getByText('2', { exact: true }).click({ timeout: 10000 });
-  await page.getByText('2What does NaN stands for in').click({ timeout: 10000 });
+  await page.getByText('What does NaN stands for in').click({ timeout: 10000 });
   await page.getByRole('textbox').click({ timeout: 10000 });
   await page.getByRole('textbox').fill('Not a number', { timeout: 10000 });
   await page.getByRole('button', { name: 'Next' }).click({ timeout: 10000 });
 
   // Answer the third question
   await page.getByText('3', { exact: true }).click({ timeout: 10000 });
-  await page.getByText('3Which is the value of 3^3?').click({ timeout: 10000 });
+  await page.getByText('Which is the value of 3^3?').click({ timeout: 10000 });
   await page.getByLabel('27').check({ timeout: 10000 });
 
   // Handle dialogs (if any)

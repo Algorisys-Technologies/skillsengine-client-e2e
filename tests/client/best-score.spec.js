@@ -30,7 +30,7 @@ test('test', async ({ page }) => {
   await page.screenshot({ path: 'screenshot_before_high_score.png' });
   
   // Add an explicit wait for the high score cell
-  await page.waitForSelector('text="66.67%"', { state: 'visible', timeout: 60000 }); // 60 seconds timeout
+  await page.waitForSelector('text="100.00%"', { state: 'visible', timeout: 60000 }); // 60 seconds timeout
   
   // Click on the high score cell
   await page.locator('text="66.67%"').click({ timeout: 60000 });
