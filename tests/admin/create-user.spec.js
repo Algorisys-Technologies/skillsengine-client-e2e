@@ -13,8 +13,8 @@ test('User creation test', async ({ page }) => {
   await page.getByRole('button', { name: 'Sign in with work email' }).click();
 
   // Navigate to user management
-  await page.getByRole('link', { name: ' Users' }).click();
-  await page.getByRole('button', { name: '   Create User' }).click();
+  await page.getByRole('link', { name: 'Users' }).click();
+  await page.getByRole('button', { name: 'Create User' }).click();
 
   // Fill in user details
   await page.locator('label').filter({ hasText: 'Email' }).click();

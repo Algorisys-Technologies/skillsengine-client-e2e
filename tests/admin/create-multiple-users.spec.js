@@ -5,14 +5,14 @@ test('create multiple users', async ({ page }) => {
   await page.goto('https://skillzengine.algorisys.com/admin/');
 
   // Log in
-  await page.getByRole('link', { name: ' Users' }).click();
+  await page.getByRole('link', { name: 'Users' }).click();
   await page.getByPlaceholder('email@company.com').fill('madhuri.bansode@algorisys.com');
   await page.getByPlaceholder('................').fill('12345678');
   await page.getByRole('button', { name: 'Sign in with work email' }).click();
 
   // Navigate to Create Multiple Users
-  await page.getByRole('link', { name: ' Users' }).click();
-  await page.getByRole('button', { name: '   Create Multiple Users' }).click();
+  await page.getByRole('link', { name: 'Users' }).click();
+  await page.getByRole('button', { name: 'Create Multiple Users' }).click();
 
   // Fill out the form to create multiple users
   await page.getByText('Enter multiple Email Ids of').click();

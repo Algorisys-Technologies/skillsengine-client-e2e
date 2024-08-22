@@ -13,7 +13,7 @@ test('Question Management Test', async ({ page }) => {
   await page.waitForURL('https://skillzengine.com/admin/dashboard');
   
   // Navigate to Questions section
-  await page.getByRole('link', { name: ' Questions' }).click();
+  await page.getByRole('link', { name: 'Questions' }).click();
   await page.getByRole('heading', { name: 'Templates for Question' }).click();
   
   // Select categories
@@ -31,7 +31,7 @@ test('Question Management Test', async ({ page }) => {
   
   // Cancel action and navigate to the dashboard
   await page.getByRole('button', { name: 'cancel' }).click();
-  await page.getByRole('heading', { name: ' Create Category' }).locator('i').click();
+  await page.getByRole('heading', { name: 'Create Category' }).locator('i').click();
   await page.getByRole('heading', { name: 'All Questions' }).click();
   
   // Final checks and navigation

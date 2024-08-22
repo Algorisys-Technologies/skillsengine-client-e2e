@@ -9,7 +9,7 @@ test('External User Results Navigation and Validation', async ({ page }) => {
   await page.getByRole('button', { name: 'Sign in with work email' }).click();
 
   // Navigate to External User Results
-  await page.getByRole('link', { name: ' External User Results' }).click();
+  await page.getByRole('link', { name: 'External User Results' }).click();
   await page.getByRole('heading', { name: 'External User Results' }).isVisible();
 
   // Filter Results
@@ -23,7 +23,7 @@ test('External User Results Navigation and Validation', async ({ page }) => {
   
   // Open Detailed Results
   await page.getByRole('row', { name: '1 shindepoonam9398@gmail.com' }).getByRole('link').click();
-  await page.getByRole('heading', { name: '  Detail Results For' }).isVisible();
+  await page.getByRole('heading', { name: 'Detail Results For' }).isVisible();
   
   // Validate Detailed Results
   await page.getByRole('cell', { name: 'Questions' }).isVisible();

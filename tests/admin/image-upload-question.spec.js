@@ -13,7 +13,7 @@ test('Image upload and question creation', async ({ page }) => {
   await page.waitForNavigation();
 
   // Navigate to the 'Create Questions' page
-  await page.getByRole('link', { name: ' Questions' }).click();
+  await page.getByRole('link', { name: 'Questions' }).click();
   await page.getByRole('button', { name: 'Create Questions' }).click();
   
   // Fill in the question details
@@ -43,7 +43,7 @@ test('Image upload and question creation', async ({ page }) => {
   await page.getByRole('button', { name: 'Save' }).click();
   
   // Navigate to 'All Questions' and verify the created question
-  await page.getByRole('heading', { name: ' Templates for Question' }).locator('i').click();
+  await page.getByRole('heading', { name: 'Templates for Question' }).locator('i').click();
   await page.getByRole('heading', { name: 'All Questions' }).click();
   await page.getByRole('cell', { name: 'Find the ODD one out from the' }).click();
   

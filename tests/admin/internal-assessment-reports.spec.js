@@ -5,7 +5,7 @@ test('Internal Assessment navigation and validation', async ({ page }) => {
   await page.goto('https://skillzengine.algorisys.com/admin/');
   
   // Click on the Internal Assessment link
-  await page.getByRole('link', { name: ' Internal Assessment' }).click();
+  await page.getByRole('link', { name: 'Internal Assessment' }).click();
 
   // Log in
   await page.getByPlaceholder('email@company.com').fill('madhuri.bansode@algorisys.com');
@@ -17,14 +17,14 @@ test('Internal Assessment navigation and validation', async ({ page }) => {
   await expect(page).toHaveURL(/admin/); // Check that the URL contains 'admin' indicating successful login
 
   // Navigate to Internal Assessment again
-  await page.getByRole('link', { name: ' Internal Assessment' }).click();
+  await page.getByRole('link', { name: 'Internal Assessment' }).click();
 
   // Debugging: Log current URL and take a screenshot
   console.log(`Current URL: ${page.url()}`);
   await page.screenshot({ path: 'debug-screenshot.png' });
 
   // Increase timeout for the next expectation
-  await expect(page.getByRole('heading', { name: '  List of Assigned Assessment' })).toBeVisible({ timeout: 10000 });
+  await expect(page.getByRole('heading', { name: 'List of Assigned Assessment' })).toBeVisible({ timeout: 10000 });
 
   // Interact with the list of assessments
   await page.getByRole('cell', { name: 'User_Name' }).click();

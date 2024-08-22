@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test('test', async ({ page }) => {
   await page.goto('https://skillzengine.algorisys.com/admin/');
-  await page.getByRole('link', { name: ' All Results' }).click();
+  await page.getByRole('link', { name: 'All Results' }).click();
   await page.getByPlaceholder('email@company.com').click();
   await page.getByPlaceholder('email@company.com').fill('poonam.shinde@algorisys.com');
   await page.getByRole('button', { name: 'Continue' }).click();
@@ -10,21 +10,20 @@ test('test', async ({ page }) => {
   await page.getByPlaceholder('................').click();
   await page.getByPlaceholder('................').fill('12345678');
   await page.getByRole('button', { name: 'Sign in with work email' }).click();
-  await page.getByRole('link', { name: ' All Results' }).click();
+  await page.getByRole('link', { name: 'All Results' }).click();
   await page.getByRole('heading', { name: 'All Results' }).click();
   await page.getByText('All Results filter by').click();
   await page.getByRole('button', { name: 'Assigned To Users 8 ...' }).click();
   await page.getByRole('button', { name: 'Assigned To Users 12 ...' }).click();
   await page.getByRole('button', { name: 'For Internal Users 6 ...' }).click();
   await page.locator('section div').filter({ hasText: 'List of Assigned' }).nth(2).click();
-  await page.getByRole('heading', { name: '  List of Assigned Assessment' }).locator('i').click();
+  await page.getByRole('heading', { name: 'List of Assigned Assessment' }).locator('i').click();
   await page.getByRole('button', { name: 'For Internal Users 6 ...' }).click();
-  await page.getByRole('heading', { name: '  List of Assigned Assessment' }).locator('i').click();
+  await page.getByRole('heading', { name: 'List of Assigned Assessment' }).locator('i').click();
   await page.getByRole('button', { name: 'For External Users 6 ...' }).click();
-  await page.getByRole('heading', { name: '  List of Assigned' }).locator('i').click();
+  await page.getByRole('heading', { name: 'List of Assigned' }).locator('i').click();
   await page.getByRole('button', { name: 'For External Users 6 ...' }).click();
-  await page.getByRole('heading', { name: '  List of Assigned' }).locator('i').click();
-  await page.getByRole('cell', { name: 'User_Name' }).click();
+  await page.getByRole('heading', { name: 'List of Assigned' }).locator('i').click();
   await page.getByRole('cell', { name: 'User_Name' }).click();
   await page.getByRole('cell', { name: 'Assessment_Title' }).click();
   await page.getByRole('cell', { name: 'User_Type' }).click();

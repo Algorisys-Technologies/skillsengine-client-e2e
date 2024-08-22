@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test('test', async ({ page }) => {
   await page.goto('https://skillzengine.algorisys.com/admin/');
-  await page.getByRole('link', { name: ' Users' }).click();
+  await page.getByRole('link', { name: 'Users' }).click();
 
   // Log in
   await page.getByPlaceholder('email@company.com').fill('madhuri.bansode@algorisys.com');
@@ -13,7 +13,7 @@ test('test', async ({ page }) => {
   await page.getByRole('link', { name: ' Users' }).click();
 
   // Wait for the 'Invite External Users' button to be ready
-  const inviteButton = await page.getByRole('button', { name: '   Invite External Users' });
+  const inviteButton = await page.getByRole('button', { name: 'Invite External Users' });
   await inviteButton.scrollIntoViewIfNeeded();
   await inviteButton.waitFor({ state: 'visible' });
   await inviteButton.click();

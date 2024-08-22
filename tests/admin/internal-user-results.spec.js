@@ -13,13 +13,13 @@ test('Internal User Results Navigation and Validation', async ({ page }) => {
 
   // Navigate to "All Results" section
   await page.waitForLoadState('networkidle'); // Wait for the page to fully load
-  await expect(page.getByRole('link', { name: ' All Results' })).toBeVisible(); // Ensure the link is visible
-  await page.getByRole('link', { name: ' All Results' }).click();
+  await expect(page.getByRole('link', { name: 'All Results' })).toBeVisible(); // Ensure the link is visible
+  await page.getByRole('link', { name: 'All Results' }).click();
 
   // Navigate to "Internal User Results"
   await page.waitForLoadState('networkidle'); // Wait for the page to fully load
-  await expect(page.getByRole('link', { name: ' Internal User Results' })).toBeVisible(); // Ensure the link is visible
-  await page.getByRole('link', { name: ' Internal User Results' }).click();
+  await expect(page.getByRole('link', { name: 'Internal User Results' })).toBeVisible(); // Ensure the link is visible
+  await page.getByRole('link', { name: 'Internal User Results' }).click();
   await expect(page.getByRole('heading', { name: 'Internal User Results' })).toBeVisible();
 
   // Filtering functionality
@@ -40,7 +40,7 @@ test('Internal User Results Navigation and Validation', async ({ page }) => {
   await page.getByRole('row', { name: '1 poonam.shinde@algorisys.com' }).getByRole('cell').nth(1).click();
   await page.getByRole('cell', { name: '75.00%' }).first().click();
   await page.getByRole('row', { name: '1 poonam.shinde@algorisys.com' }).getByRole('link').click();
-  await expect(page.getByRole('heading', { name: '  Detail Results For' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Detail Results For' })).toBeVisible();
 
   // More detailed result validations
   await page.getByText('See userwise results').click();

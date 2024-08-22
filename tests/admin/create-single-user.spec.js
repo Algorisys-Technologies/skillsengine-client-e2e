@@ -10,10 +10,10 @@ test('create single user', async ({ page }) => {
   await page.getByRole('button', { name: 'Sign in with work email' }).click();
 
   // Navigate to Users section
-  await page.getByRole('link', { name: ' Users' }).click();
+  await page.getByRole('link', { name: 'Users' }).click();
 
   // Click on 'Create User' button
-  await page.getByRole('button', { name: '   Create User' }).click();
+  await page.getByRole('button', { name: 'Create User' }).click();
 
   // Fill in user details
   await page.getByPlaceholder('Please enter a valid email').fill('bhakti.sutar@algorisys.com');

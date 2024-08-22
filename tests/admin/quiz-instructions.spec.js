@@ -11,7 +11,7 @@ test('test', async ({ page }) => {
   await page.getByRole('button', { name: 'Sign in with work email' }).click();
   
   // Navigate to Quiz Instructions
-  await page.getByRole('link', { name: ' Quiz Instructions' }).click();
+  await page.getByRole('link', { name: 'Quiz Instructions' }).click();
   await page.getByText('Quiz Instruction', { exact: true }).click();
   
   // Add a new quiz instruction

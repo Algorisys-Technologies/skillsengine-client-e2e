@@ -14,7 +14,7 @@ test('Create Group in SkillzEngine', async ({ page }) => {
   await expect(page.locator('h3.menu-header:text("Assessment")')).toBeVisible();
 
   // Navigate to the 'Create Group' section
-  await page.getByRole('link', { name: ' Create Group' }).click();
+  await page.getByRole('link', { name: 'Create Group' }).click();
 
   // Fill in the Group Name and submit
   await page.getByLabel('Group Name').fill('General knowledge test');

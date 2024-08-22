@@ -21,10 +21,10 @@ test('External Assessment Reports', async ({ page }) => {
   await page.getByRole('button', { name: 'Sign in with work email' }).click();
   
   // Navigate to External Assessment section
-  await page.getByRole('link', { name: ' External Assessment' }).click();
+  await page.getByRole('link', { name: 'External Assessment' }).click();
   
   // Navigate to the List of Assigned Assessments
-  await page.getByRole('heading', { name: '  List of Assigned' }).click();
+  await page.getByRole('heading', { name: 'List of Assigned' }).click();
   
   // Validate assessments
   await page.getByText('See how many Assessments are').click();
@@ -46,7 +46,7 @@ test('External Assessment Reports', async ({ page }) => {
   
   // Navigate to Details and Validate results
   await page.getByRole('link', { name: 'Details' }).click();
-  await page.getByRole('heading', { name: '  Detail Results For' }).click();
+  await page.getByRole('heading', { name: 'Detail Results For' }).click();
   await page.getByText('See userwise results').click();
   
   // Validate correct answers and other details

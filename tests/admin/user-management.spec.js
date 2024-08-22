@@ -11,7 +11,7 @@ test('User management test', async ({ page }) => {
   
   // Navigate to Users section
   await page.getByRole('heading', { name: 'User', exact: true }).click();
-  await page.getByRole('link', { name: ' Users' }).click();
+  await page.getByRole('link', { name: 'Users' }).click();
   
   // Interact with the user list
   await page.getByRole('heading', { name: 'List of Users' }).click();
