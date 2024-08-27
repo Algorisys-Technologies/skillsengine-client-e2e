@@ -44,6 +44,7 @@ test('test', async ({ page }) => {
       await page.getByRole('rowheader', { name: 'Test date :' }).click();
       await page.getByRole('cell', { name: cell.date }).click();
       await page.getByRole('rowheader', { name: 'Marks :' }).click();
+      
       await page.getByRole('cell', { name: cell.mark }).click();
       await page.getByText('Back to page').click();
     }

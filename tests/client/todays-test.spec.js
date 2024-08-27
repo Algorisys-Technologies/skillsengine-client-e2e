@@ -33,9 +33,9 @@ test('test', async ({ page }) => {
   await page.getByRole('heading', { name: 'Quiz Instructions' }).click();
   await page.locator('.card-body').click();
   await page.getByText('1', { exact: true }).click();  // Ensure this selector is correct
-  await page.getByText('Ensure that you have a stable').click();
+  await page.getByText('Ensure that you have a stable internet connection before starting the quiz. Any interruption might result in losing your progress.').click();
   await page.getByText('2').click();  // Ensure this selector is correct
-  await page.getByText('This question is worth 1').first().click();
+  await page.getByText(' This question is worth 1 point. There is no penalty for incorrect answers.').first().click();
   await page.getByRole('button', { name: 'Continue' }).click();
 
   // Answer a question
