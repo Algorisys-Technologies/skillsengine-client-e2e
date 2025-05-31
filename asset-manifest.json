@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/bf4-server-info/static/css/main.e6c13ad2.css",
+    "main.js": "/bf4-server-info/static/js/main.9c7a5d87.js",
+    "static/js/453.419a5d54.chunk.js": "/bf4-server-info/static/js/453.419a5d54.chunk.js",
+    "index.html": "/bf4-server-info/index.html",
+    "main.e6c13ad2.css.map": "/bf4-server-info/static/css/main.e6c13ad2.css.map",
+    "main.9c7a5d87.js.map": "/bf4-server-info/static/js/main.9c7a5d87.js.map",
+    "453.419a5d54.chunk.js.map": "/bf4-server-info/static/js/453.419a5d54.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.9c7a5d87.js"
+  ]
+}
